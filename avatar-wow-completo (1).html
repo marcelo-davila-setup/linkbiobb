@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adriana Sousa - Transformação Pessoal</title>
+    <!-- Preload das imagens críticas -->
+    <link rel="preload" as="image" href="https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Adriana-vmake%20(1).png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #F8F5F0;
+            --text: #33353A;
+            --accent: #D4AF37;
+            --dark: #1A2035;
+            --white: #ffffff;
+            --purple: #7C3AED;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #FFD700 70%, #B8860B 100%);
+            --shadow-luxury: 0 15px 50px rgba(26, 32, 53, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F8F5F0 0%, #E8E5E0 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        /* FLOATING PARTICLES EFFECT */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #D4AF37, transparent);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ==================== AVATAR SECTION ==================== */
+        .avatar-section {
+            text-align: center;
+            padding: 20px 15px 15px;
+            background: var(--white);
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-luxury);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin-top: 15px;
+            transition: all 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shimmer 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .name {
+            font-size: 26px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .specialty {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 15px 0 20px 0;
+        }
+
+        .avatar {
+            width: 260px;
+            height: 390px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow-luxury);
+            transition: all 0.5s ease;
+            image-rendering: -webkit-optimize-contrast;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .avatar-message {
+            position: absolute;
+            top: 25%;
+            left: 55%;
+            transform: translateX(-50%);
+            width: 150px;
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--dark);
+            text-align: center;
+            opacity: 0;
+            transition: all 0.6s ease;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+            padding: 6px 8px;
+            background: transparent;
+            border-radius: 0;
+            line-height: 1.3;
+            z-index: 3;
+        }
+
+        .avatar-message.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .avatar-message.wow {
+            color: #D4AF37;
+            font-size: 15px;
+            font-weight: 900;
+            background: transparent;
+            border: none;
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta-section {
+            display: none;
+            text-align: center;
+            padding: 25px 20px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-luxury);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin-top: 20px;
+            opacity: 0;
+            transition: all 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .cta-title {
+            font-size: 24px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .cta-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            background: rgba(248, 245, 240, 0.5);
+            color: var(--text);
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .name-input::placeholder {
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* ==================== TRANSITION SECTION ==================== */
+        .transition-section {
+            display: none;
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-luxury);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin-top: 20px;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .transition-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .transition-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .transition-title {
+            font-size: 24px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .transition-message {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gold-gradient);
+            width: 0%;
+            transition: width 3s ease;
+            border-radius: 3px;
+        }
+
+        .wow-insights {
+            text-align: left;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .insight-item {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .insight-item.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .insight-item .label {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        /* ==================== OPTIONS SECTION ==================== */
+        .options-section {
+            display: none;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .options-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .options-header {
+            background: var(--gold-gradient);
+            color: var(--dark);
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+            box-shadow: var(--shadow-luxury);
+            margin-bottom: 0;
+        }
+
+        .options-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .options-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 12px;
+        }
+
+        .options-message {
+            font-size: 15px;
+            font-weight: 400;
+            font-style: italic;
+            font-family: 'Kalam', cursive;
+            z-index: 2;
+            position: relative;
+        }
+
+        .options-wrapper {
+            background: var(--white);
+            padding: 25px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--shadow-luxury);
+        }
+
+        .option-card {
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 18px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .option-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .option-card:hover::before {
+            left: 100%;
+        }
+
+        .option-card:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .option-content {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .option-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: inherit;
+        }
+
+        .option-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+            line-height: 1.4;
+            color: inherit;
+        }
+
+        .option-price {
+            font-size: 20px;
+            font-weight: 900;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            min-width: 80px;
+        }
+
+        /* Opção GRÁTIS */
+        .option-free {
+            background: linear-gradient(135deg, #E0F2FE 0%, #BAE6FD 50%, #7DD3FC 100%);
+            color: #0C4A6E;
+            border: 2px solid #14B8A6;
+        }
+
+        .option-free .option-price {
+            font-size: 18px;
+            background: linear-gradient(135deg, #0369A1, #0C4A6E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Outras opções */
+        .option-golden {
+            background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #CBD5E1 100%);
+            color: #1E293B;
+            border: 2px solid #E879F9;
+        }
+
+        .option-green {
+            background: linear-gradient(135deg, #ECFDF5 0%, #BBF7D0 50%, #86EFAC 100%);
+            color: #064E3B;
+            border: 2px solid #059669;
+        }
+
+        .option-purple {
+            background: linear-gradient(135deg, #F3E8FF 0%, #DDD6FE 50%, #C4B5FD 100%);
+            color: #581C87;
+            border: 2px solid #7C3AED;
+        }
+
+        .option-orange {
+            background: linear-gradient(135deg, #FEF2F2 0%, #FECACA 50%, #FCA5A5 100%);
+            color: #7F1D1D;
+            border: 2px solid #F97316;
+            position: relative;
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -8px;
+            right: 15px;
+            background: #FF4444;
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 12px;
+            z-index: 3;
+        }
+
+        /* TTS Button */
+        .tts-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--gold-gradient);
+            border: none;
+            border-radius: 50%;
+            color: var(--dark);
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-luxury);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: none;
+        }
+
+        .tts-button.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tts-button:hover {
+            transform: scale(1.1);
+        }
+
+        .tts-button.speaking {
+            animation: speaking 0.5s infinite;
+        }
+
+        @keyframes speaking {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+            
+            .avatar {
+                width: 220px;
+                height: 330px;
+            }
+            
+            .option-card {
+                padding: 18px;
+                min-height: 90px;
+            }
+            
+            .option-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- AVATAR SECTION -->
+        <div class="avatar-section" id="avatarSection">
+            <h1 class="name">ADRIANA SOUSA</h1>
+            <p class="specialty">TRANSFORMAÇÃO PESSOAL</p>
+            
+            <div class="avatar-container">
+                <img 
+                    src="https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Adriana-vmake%20(1).png" 
+                    alt="Adriana Sousa" 
+                    class="avatar"
+                    id="avatar"
+                >
+                <div class="avatar-message" id="avatarMessage">
+                    Olá...
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA SECTION -->
+        <div class="cta-section" id="ctaSection">
+            <h2 class="cta-title" id="ctaTitle">Como os que mais te AMAM te CHAMAM?</h2>
+            <p class="cta-subtitle" id="ctaSubtitle">Desenvolvimento pessoal personalizado</p>
+            <input 
+                type="text" 
+                class="name-input" 
+                id="userName" 
+                placeholder="Digite seu nome aqui..."
+                autocomplete="given-name"
+            >
+        </div>
+
+        <!-- TRANSITION SECTION -->
+        <div class="transition-section" id="transitionSection">
+            <div class="transition-icon">🔮</div>
+            <h3 class="transition-title" id="transitionTitle">Olá!</h3>
+            <p class="transition-message" id="transitionMessage">Analisando seu perfil...</p>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="wow-insights" id="wowInsights">
+                <div class="insight-item">
+                    <span class="label">Horário:</span> 
+                    <span id="timeInsight"></span>
+                </div>
+                <div class="insight-item">
+                    <span class="label">Perfil:</span> 
+                    <span id="profileInsight"></span>
+                </div>
+                <div class="insight-item">
+                    <span class="label">Energia:</span> 
+                    <span id="energyInsight"></span>
+                </div>
+                <div class="insight-item">
+                    <span class="label">Compatibilidade:</span> 
+                    <span id="compatibilityInsight"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPTIONS SECTION -->
+        <div class="options-section" id="optionsSection">
+            <div class="options-header">
+                <h1 class="options-title" id="optionsTitle">OLÁ VISITANTE!</h1>
+                <p class="options-subtitle">Transformação pessoal</p>
+                <div class="options-message" id="optionsMessage">
+                    Por onde você quer começar? ✨
+                </div>
+            </div>
+
+            <div class="options-wrapper">
+                <!-- Opção GRÁTIS -->
+                <div class="option-card option-free" onclick="selectOption('exercicios-gratis', 0, 'https://adrianasousa.com/gratis')">
+                    <div class="option-content">
+                        <div class="option-title">🎁 TTS Personalizado GRÁTIS</div>
+                        <div class="option-subtitle">Mensagem motivacional exclusiva com seu nome</div>
+                    </div>
+                    <div class="option-price">GRÁTIS</div>
+                </div>
+
+                <!-- Opção 1 -->
+                <div class="option-card option-golden" onclick="selectOption('conhecer-si-mesmo', 97, 'https://adrianasousa.com/autoconhecimento')">
+                    <div class="option-content">
+                        <div class="option-title">Conhecer a Ti Mesmo</div>
+                        <div class="option-subtitle">Programa completo de autoconhecimento e transformação pessoal</div>
+                    </div>
+                    <div class="option-price">R$ 97</div>
+                </div>
+
+                <!-- Opção 2 -->
+                <div class="option-card option-green" onclick="selectOption('app-audiovisual', 39, 'https://adrianasousa.com/app')">
+                    <div class="option-content">
+                        <div class="option-title">Link App Audio Visual</div>
+                        <div class="option-subtitle">Acesso ao aplicativo com conteúdos exclusivos em áudio e vídeo</div>
+                    </div>
+                    <div class="option-price">R$ 39</div>
+                </div>
+
+                <!-- Opção 3 -->
+                <div class="option-card option-purple" onclick="selectOption('templates-feed', 29, 'https://adrianasousa.com/templates')">
+                    <div class="option-content">
+                        <div class="option-title">Templates para Feed Mentalidade</div>
+                        <div class="option-subtitle">Templates criativos para transformar sua presença digital</div>
+                    </div>
+                    <div class="option-price">R$ 29</div>
+                </div>
+
+                <!-- Opção 4 - RECOMENDADA -->
+                <div class="option-card option-orange" onclick="selectOption('call-individual', 297, 'https://adrianasousa.com/consultoria')">
+                    <div class="recommended-badge">RECOMENDADO</div>
+                    <div class="option-content">
+                        <div class="option-title">Uma Call 1 a 1 Comigo</div>
+                        <div class="option-subtitle">Sessão personalizada individual para transformação direcionada</div>
+                    </div>
+                    <div class="option-price">R$ 297</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TTS Button -->
+    <button class="tts-button" id="ttsButton" onclick="playTTS()">
+        🔊
+    </button>
+
+    <!-- Footer -->
+    <div class="footer">
+        Elaborado por @marceloagentedigital
+    </div>
+
+    <script>
+        // ==================== GLOBALS ====================
+        let userName = '';
+        let userBehavior = {};
+        let sessionData = {};
+
+        // ==================== UTILITY FUNCTIONS ====================
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function getReliableData() {
+            const now = new Date();
+            const arrival = sessionStorage.getItem('arrival') || now.getTime();
+            if (!sessionStorage.getItem('arrival')) {
+                sessionStorage.setItem('arrival', arrival);
+            }
+            
+            return {
+                hour: now.getHours(),
+                minute: now.getMinutes(),
+                day: getDayName(now.getDay()),
+                timeOnSite: Math.floor((now.getTime() - arrival) / 1000),
+                screenWidth: window.innerWidth,
+                isMobile: window.innerWidth < 768,
+                isBrazilian: navigator.language.includes('pt'),
+                referrer: getReferrerSafe(),
+                arrivalTime: new Date(parseInt(arrival)).toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})
+            };
+        }
+
+        function getDayName(dayIndex) {
+            const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+            return days[dayIndex];
+        }
+
+        function getReferrerSafe() {
+            const ref = document.referrer;
+            if (ref.includes('google')) return 'Google';
+            if (ref.includes('facebook')) return 'Facebook';
+            if (ref.includes('instagram')) return 'Instagram';
+            if (ref.includes('whatsapp')) return 'WhatsApp';
+            return ref ? 'Link direto' : 'Acesso direto';
+        }
+
+        function getPersonalityInsight(data) {
+            if (data.hour >= 6 && data.hour < 12) return "pessoa matinal e focada";
+            if (data.hour >= 12 && data.hour < 18) return "pessoa prática e decisiva";
+            if (data.hour >= 18 && data.hour < 22) return "pessoa reflexiva e cuidadosa";
+            return "pessoa introspectiva e profunda";
+        }
+
+        function getEnergyInsight(data) {
+            const energy = ['equilibrada', 'criativa', 'transformadora', 'intuitiva', 'poderosa'];
+            return energy[data.minute % energy.length];
+        }
+
+        function getCompatibilityScore() {
+            return 85 + Math.floor(Math.random() * 14); // 85-99%
+        }
+
+        // ==================== PARTICLES EFFECT ====================
+        
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            function addParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 8000);
+            }
+            
+            // Create initial particles
+            for (let i = 0; i < 5; i++) {
+                setTimeout(addParticle, i * 1000);
+            }
+            
+            // Continue creating particles
+            setInterval(addParticle, 2000);
+        }
+
+        // ==================== AVATAR SEQUENCE ====================
+        
+        async function startAvatarSequence() {
+            const message = document.getElementById('avatarMessage');
+            const data = getReliableData();
+            
+            sessionData = data;
+            
+            // Sequência WOW com dados reais
+            const messages = [
+                "Olá...",
+                `${data.arrivalTime}... você chegou exatamente agora...`,
+                `${data.day}... ${getPersonalityInsight(data)}...`,
+                data.isBrazilian ? 
+                    `${userName ? userName : 'Você'}, não é coincidência estar aqui...` : 
+                    "You're here for a reason...",
+                data.isBrazilian ?
+                    "Como os que te AMAM te chamam? 👇" :
+                    "What's your name? 👇"
+            ];
+
+            // Executar sequência
+            for (let i = 0; i < messages.length; i++) {
+                message.classList.remove('show', 'wow');
+                await sleep(200);
+                
+                message.textContent = messages[i];
+                message.classList.add('show');
+                
+                // Efeito WOW nas mensagens especiais
+                if (i >= 1 && i <= 3) {
+                    message.classList.add('wow');
+                }
+                
+                await sleep(3000);
+            }
+
+            // Mostrar CTA
+            setTimeout(() => showCTA(), 500);
+        }
+
+        function showCTA() {
+            const ctaSection = document.getElementById('ctaSection');
+            const userInput = document.getElementById('userName');
+            
+            ctaSection.classList.add('active');
+            
+            // Auto-scroll suave
+            setTimeout(() => {
+                ctaSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center' 
+                });
+            }, 300);
+            
+            // Focar no input
+            setTimeout(() => {
+                userInput.focus();
+            }, 800);
+            
+            // Listeners para captura do nome
+            userInput.addEventListener('input', handleNameInput);
+            userInput.addEventListener('keypress', handleNameKeypress);
+        }
+
+        function handleNameInput() {
+            const nome = document.getElementById('userName').value.trim();
+            if (nome.length >= 2) {
+                clearTimeout(window.nameTimeout);
+                window.nameTimeout = setTimeout(() => {
+                    if (nome.length >= 2) {
+                        userName = nome;
+                        startTransition();
+                    }
+                }, 1500);
+            }
+        }
+
+        function handleNameKeypress(e) {
+            if (e.key === 'Enter') {
+                const nome = document.getElementById('userName').value.trim();
+                if (nome.length >= 2) {
+                    userName = nome;
+                    startTransition();
+                }
+            }
+        }
+
+        // ==================== TRANSITION SEQUENCE ====================
+        
+        async function startTransition() {
+            // Esconder CTA
+            document.getElementById('ctaSection').style.display = 'none';
+            
+            // Mostrar transição
+            const transitionSection = document.getElementById('transitionSection');
+            const transitionTitle = document.getElementById('transitionTitle');
+            const transitionMessage = document.getElementById('transitionMessage');
+            const progressFill = document.getElementById('progressFill');
+            
+            transitionSection.classList.add('active');
+            
+            // Personalizar títulos
+            transitionTitle.textContent = `Olá ${userName}!`;
+            transitionMessage.textContent = 'Analisando seu perfil único...';
+            
+            // Scroll para transição
+            setTimeout(() => {
+                transitionSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center' 
+                });
+            }, 300);
+            
+            // Animar progress bar
+            setTimeout(() => {
+                progressFill.style.width = '100%';
+            }, 500);
+            
+            // Mostrar insights progressivamente
+            await showInsights();
+            
+            // Ir para opções após insights
+            setTimeout(() => {
+                showOptions();
+            }, 2000);
+        }
+
+        async function showInsights() {
+            const data = sessionData;
+            const insights = document.querySelectorAll('.insight-item');
+            
+            // Dados para os insights
+            const insightData = [
+                `${data.arrivalTime} de ${data.day} - ${getPersonalityInsight(data)}`,
+                data.isMobile ? 'Mobile - Pessoa moderna e ágil' : 'Desktop - Pessoa focada e analítica',
+                `Energia ${getEnergyInsight(data)} - Momento perfeito para transformação`,
+                `${getCompatibilityScore()}% - Altamente compatível com método Adriana`
+            ];
+            
+            // Atualizar textos
+            document.getElementById('timeInsight').textContent = insightData[0];
+            document.getElementById('profileInsight').textContent = insightData[1];
+            document.getElementById('energyInsight').textContent = insightData[2];
+            document.getElementById('compatibilityInsight').textContent = insightData[3];
+            
+            // Animar insights
+            for (let i = 0; i < insights.length; i++) {
+                await sleep(800);
+                insights[i].classList.add('show');
+            }
+        }
+
+        // ==================== OPTIONS SECTION ====================
+        
+        async function showOptions() {
+            // Esconder transição
+            document.getElementById('transitionSection').style.display = 'none';
+            
+            // Mostrar opções
+            const optionsSection = document.getElementById('optionsSection');
+            const optionsTitle = document.getElementById('optionsTitle');
+            const optionsMessage = document.getElementById('optionsMessage');
+            
+            // Personalizar header
+            optionsTitle.textContent = `OLÁ ${userName.toUpperCase()}!`;
+            optionsMessage.innerHTML = `<span style="font-weight: 600;">${userName}, por onde você quer começar? ✨</span>`;
+            
+            optionsSection.classList.add('active');
+            
+            // Scroll para opções
+            setTimeout(() => {
+                optionsSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start' 
+                });
+            }, 300);
+            
+            // Animar cards das opções
+            const cards = document.querySelectorAll('.option-card');
+            for (let i = 0; i < cards.length; i++) {
+                await sleep(200);
+                cards[i].classList.add('show');
+            }
+            
+            // Mostrar botão TTS
+            setTimeout(() => {
+                document.getElementById('ttsButton').classList.add('active');
+                playWelcomeTTS();
+            }, 1000);
+        }
+
+        // ==================== TTS FUNCTIONALITY ====================
+        
+        function playWelcomeTTS() {
+            const message = `Eu sou a Adriana. Preparei essas opções especiais para você. A primeira é um presente meu - um áudio personalizado exclusivo. As outras são jornadas completas de transformação. Escolha a que mais combina com seu coração!`;
+            speakText(message);
+        }
+
+        function playTTS() {
+            const message = `Aqui estão suas opções de transformação. Eu recomendo começar pelo áudio gratuito para sentir como trabalho. Depois, se ressoar com você, escolha a jornada que mais fala ao seu coração. Estou aqui para te guiar!`;
+            speakText(message);
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                // Parar qualquer TTS em andamento
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'pt-BR';
+                utterance.rate = 0.9;
+                utterance.pitch = 1.1;
+                
+                // Animação do botão durante TTS
+                const button = document.getElementById('ttsButton');
+                button.classList.add('speaking');
+                
+                utterance.onend = () => {
+                    button.classList.remove('speaking');
+                };
+                
+                utterance.onerror = () => {
+                    button.classList.remove('speaking');
+                };
+                
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // ==================== OPTION SELECTION ====================
+        
+        function selectOption(optionId, price, url) {
+            // Vibração no celular
+            if (navigator.vibrate) {
+                navigator.vibrate([50, 30, 50]);
+            }
+            
+            // Analytics tracking
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'option_selected', {
+                    'option_id': optionId,
+                    'price': price,
+                    'user_name': userName,
+                    'session_data': JSON.stringify(sessionData)
+                });
+            }
+            
+            // Mostrar feedback
+            showSelectionFeedback(optionId, price);
+            
+            // Redirecionar após feedback
+            setTimeout(() => {
+                window.open(url, '_blank');
+            }, 1500);
+        }
+
+        function showSelectionFeedback(optionId, price) {
+            const optionNames = {
+                'exercicios-gratis': '🎁 TTS Personalizado GRÁTIS',
+                'conhecer-si-mesmo': 'Conhecer a Ti Mesmo',
+                'app-audiovisual': 'Link App Audio Visual',
+                'templates-feed': 'Templates para Feed Mentalidade',
+                'call-individual': 'Uma Call 1 a 1 Comigo'
+            };
+            
+            // Criar modal de feedback
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            modal.innerHTML = `
+                <div style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 20px;
+                    text-align: center;
+                    max-width: 320px;
+                    margin: 20px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                ">
+                    <div style="font-size: 40px; margin-bottom: 15px;">✨</div>
+                    <h3 style="color: #D4AF37; margin-bottom: 10px; font-size: 20px; font-weight: 900;">Excelente escolha, ${userName}!</h3>
+                    <p style="color: #666; margin-bottom: 15px; font-size: 16px; font-weight: 600;">
+                        ${optionNames[optionId]}<br>
+                        ${price === 0 ? 'GRÁTIS' : `R$ ${price}`}
+                    </p>
+                    <p style="color: #D4AF37; font-size: 14px; font-weight: 600;">
+                        Redirecionando você agora...
+                    </p>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // TTS para seleção
+            const feedbackMessage = optionId === 'exercicios-gratis' ? 
+                `Perfeito ${userName}! Você escolheu o áudio personalizado gratuito. Que lindo presente para começar sua transformação!` :
+                `Que escolha incrível ${userName}! ${optionNames[optionId]} é perfeita para seu momento. Vamos juntas nessa jornada!`;
+            
+            setTimeout(() => speakText(feedbackMessage), 500);
+            
+            // Remover modal após 3 segundos
+            setTimeout(() => {
+                modal.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    if (modal.parentNode) {
+                        document.body.removeChild(modal);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // ==================== CSS ANIMATIONS ====================
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: scale(0.9); }
+                to { opacity: 1; transform: scale(1); }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; transform: scale(1); }
+                to { opacity: 0; transform: scale(0.9); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ==================== INITIALIZATION ====================
+        
+        // Preload de imagens
+        const preloadImages = () => {
+            const imageUrls = [
+                'https://pub-e40d9ad14e5a4e13b2bfe7e2ae67bb03.r2.dev/Adriana-vmake%20(1).png'
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        };
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            preloadImages();
+            createParticles();
+            
+            setTimeout(() => {
+                startAvatarSequence();
+            }, 1000);
+        });
+
+        // Prevenção de saída
+        window.addEventListener('beforeunload', function(e) {
+            if (userName && sessionData.timeOnSite > 60) {
+                const message = `Espera ${userName}! Tem certeza que quer sair? Sua transformação está começando...`;
+                e.returnValue = message;
+                return message;
+            }
+        });
+
+        // Analytics de engajamento
+        setInterval(() => {
+            if (userName) {
+                const newData = getReliableData();
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'engagement_ping', {
+                        'user_name': userName,
+                        'time_on_site': newData.timeOnSite,
+                        'scroll_depth': window.pageYOffset
+                    });
+                }
+            }
+        }, 30000);
+        
+    </script>
+</body>
+</html>
